@@ -17,7 +17,7 @@ public interface EditionDao extends CrudDao<Edition, Integer> {
     @Override
     void remove(Integer id);
 
-    public List<Edition> getListOfEdition();
+    List<Edition> getListOfEdition();
 
 }
 

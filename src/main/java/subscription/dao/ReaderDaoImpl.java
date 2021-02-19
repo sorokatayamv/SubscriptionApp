@@ -10,12 +10,10 @@ import java.util.List;
 public class ReaderDaoImpl implements ReaderDao {
     @Override
     public Reader save(Reader reader) {
-        Connection conn = null;
-        try {
-            conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
+        PreparedStatement ps = null;
+        try(Connection conn =
+                DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "INSERT INTO readers (id_edition, surname, name, patronymic) VALUES (?, ?, ?, ?)";
-            PreparedStatement ps = null;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, reader.getId());
             ps.setString(2, reader.getSurname());
@@ -24,23 +22,25 @@ public class ReaderDaoImpl implements ReaderDao {
             ps.executeUpdate();
         }
         catch (SQLException ex) {
-            // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return reader;
     }
 
     @Override
     public void update(Reader reader, Integer id) {
-        Connection conn = null;
-        try {
-            conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
-
+        PreparedStatement ps = null;
+        try(Connection conn =
+                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "UPDATE readers SET id_user = ?, surname = ?, name = ?, patronymic = ? WHERE id_user = ?";
-            PreparedStatement ps = null;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, reader.getId());
             ps.setString(2, reader.getSurname());
@@ -49,23 +49,25 @@ public class ReaderDaoImpl implements ReaderDao {
             ps.executeUpdate();
         }
         catch (SQLException ex) {
-            // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public Reader get(Integer id) {
         Reader reader = new Reader();
-        Connection conn = null;
-        try {
-            conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
-
+        PreparedStatement ps = null;
+        try(Connection conn =
+                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "SELECT * FROM readers WHERE id_user = ?";
-            PreparedStatement ps = null;
             ps = conn.prepareStatement(sql);
             ps.setInt(1,id);
             ps.executeQuery();
@@ -78,42 +80,47 @@ public class ReaderDaoImpl implements ReaderDao {
             System.out.println(reader.getId() + " " + reader.getSurname() + " " + reader.getName() + " " + reader.getPatronymic());
         }
         catch (SQLException ex) {
-            // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        }finally {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return reader;
     }
 
     @Override
     public void remove(Integer id) {
-        Connection conn = null;
-        try {
-            conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
-
+        PreparedStatement ps = null;
+        try(Connection conn =
+                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "DELETE FROM readers WHERE id_user = ?";
-            PreparedStatement ps = null;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
         }
         catch (SQLException ex) {
-            // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        }finally {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public List<Reader> getListOfReaders() {
-        Connection conn = null;
-        try {
-            conn =
+        try(Connection conn =
                     DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
-            Statement statement = conn.createStatement();
+            Statement statement = conn.createStatement();){
             ResultSet resultSet = statement.executeQuery( "SELECT * FROM readers" );
             ArrayList<Reader> result = new ArrayList<>();
             while (resultSet.next()) {
