@@ -1,11 +1,16 @@
 package subscription.services;
 
+import java.util.Scanner;
+
 public class SubscriptionActions extends AppRunnerImpl{
+    SubscriptionService subscriptionService = new SubscriptionServiceImpl();
+
     @Override
     public void start() {
-        super.start();
+        //super.start();
         System.out.println("If you want to know what the user is subscribed to, enter 1." +
                 "If you want to know who has subscription on edition please input 2.");
+        Scanner sc = new Scanner(System.in);
         int userInput = sc.nextInt();
         if(userInput == 1){
             System.out.println("Please input user id");
