@@ -7,6 +7,7 @@ import java.util.List;
 
 interface SubscriptionService {
 
-   List<Edition> getEditionsByUserId(int id);
-   List<Reader> getReadersByEditionId(int id);
+    List<Edition> getEditionsByUserId(int id);
+
+    List<Reader> getReadersByEditionId(int id);
 }

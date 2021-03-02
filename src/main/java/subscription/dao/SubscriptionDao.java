@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SubscriptionDao {
 
-   List<Edition> getEditionsByUserId(int id);
-   List<Reader> getReaderByEditionId(int id);
+    List<Edition> getEditionsByUserId(int id);
+
+    List<Reader> getReaderByEditionId(int id);
 }

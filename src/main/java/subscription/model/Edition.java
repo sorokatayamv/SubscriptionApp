@@ -6,27 +6,27 @@ public class Edition {
     private String name;
     private float cost;
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public float getCost(){
+    public float getCost() {
         return cost;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setCost(float cost){
+    public void setCost(float cost) {
         this.cost = cost;
     }
 

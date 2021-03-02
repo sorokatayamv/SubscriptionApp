@@ -11,16 +11,15 @@ public class EditionDaoImpl implements EditionDao {
     @Override
     public Edition save(Edition edition) {
         PreparedStatement ps = null;
-        try(Connection conn =
-                DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
+        try (Connection conn =
+                     DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "INSERT INTO editions (id_edition, name, cost) VALUES (?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, edition.getId());
             ps.setString(2, edition.getName());
             ps.setFloat(3, edition.getCost());
             ps.executeUpdate();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
@@ -38,20 +37,19 @@ public class EditionDaoImpl implements EditionDao {
     public Edition get(Integer id) {
         Edition edition = new Edition();
         PreparedStatement ps = null;
-        try(Connection conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
+        try (Connection conn =
+                     DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "SELECT * FROM editions WHERE id_edition = ?";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ps.executeQuery();
             ResultSet resultSet = ps.getResultSet();
             resultSet.next();
             edition.setId(resultSet.getInt("id_edition"));
             edition.setName(resultSet.getString("name"));
             edition.setCost(resultSet.getFloat("cost"));
-            System.out.println(edition.getId() + " " + edition.getName() + " " + edition.getCost() );
-        }
-        catch (SQLException ex) {
+            System.out.println(edition.getId() + " " + edition.getName() + " " + edition.getCost());
+        } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
@@ -68,8 +66,8 @@ public class EditionDaoImpl implements EditionDao {
     @Override
     public void update(Edition edition, Integer id) {
         PreparedStatement ps = null;
-        try(Connection conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
+        try (Connection conn =
+                     DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
 
             String sql = "UPDATE editions SET id_edition = ?, name = ?, cost = ? WHERE id_edition = ?";
             ps = conn.prepareStatement(sql);
@@ -77,8 +75,7 @@ public class EditionDaoImpl implements EditionDao {
             ps.setString(2, edition.getName());
             ps.setFloat(3, edition.getCost());
             ps.executeUpdate();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
@@ -94,18 +91,17 @@ public class EditionDaoImpl implements EditionDao {
     @Override
     public void remove(Integer id) {
         PreparedStatement ps = null;
-        try(Connection conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
+        try (Connection conn =
+                     DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
             String sql = "DELETE FROM editions WHERE id_edition = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
-        }finally {
+        } finally {
             try {
                 ps.close();
             } catch (SQLException e) {
@@ -116,10 +112,10 @@ public class EditionDaoImpl implements EditionDao {
 
     @Override
     public List<Edition> getListOfEdition() {
-        try(Connection conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
-            Statement statement = conn.createStatement();) {
-            ResultSet resultSet = statement.executeQuery( "SELECT * FROM editions" );
+        try (Connection conn =
+                     DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1");
+             Statement statement = conn.createStatement();) {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM editions");
             ArrayList<Edition> result = new ArrayList<>();
             while (resultSet.next()) {
                 String nameEdition = resultSet.getString(2);

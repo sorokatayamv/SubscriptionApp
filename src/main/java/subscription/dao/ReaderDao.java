@@ -17,5 +17,7 @@ public interface ReaderDao extends CrudDao<Reader, Integer> {
     @Override
     void remove(Integer id);
 
-    public List<Reader> getListOfReaders();
+    List<Reader> getListOfReaders();
+
+    List<Reader> getReaderBySurname(String surname);
 }
