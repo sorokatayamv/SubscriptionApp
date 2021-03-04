@@ -5,5 +5,8 @@ target/classes/subscription/dao/ReaderDao.class
 target/classes/subscription/dao/ReaderDaoImpl.class
 target/classes/subscription/dao/SubscriptionDaoImpl.class
 target/classes/subscription/model/Reader.class
+target/classes/*
+target/generated-sources/*
+target/generated-test-sources/*
 
 
