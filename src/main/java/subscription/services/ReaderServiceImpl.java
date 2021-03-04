@@ -1,8 +1,8 @@
 package subscription.services;
 
 
-import subscription.dao.ReaderDao;
-import subscription.dao.ReaderDaoImpl;
+import subscription.dao.interfaces.ReaderDao;
+import subscription.dao.implementation.ReaderDaoImpl;
 import subscription.model.Reader;
 
 import java.util.List;

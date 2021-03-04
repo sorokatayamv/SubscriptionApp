@@ -1,4 +1,4 @@
-package subscription.dao;
+package subscription.dao.interfaces;
 
 import subscription.model.Edition;
 

@@ -1,7 +1,7 @@
 package subscription.services;
 
-import subscription.dao.EditionDao;
-import subscription.dao.EditionDaoImpl;
+import subscription.dao.interfaces.EditionDao;
+import subscription.dao.implementation.EditionDaoImpl;
 import subscription.model.Edition;
 
 import java.util.List;

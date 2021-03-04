@@ -1,7 +1,7 @@
 package subscription.services;
 
-import subscription.dao.SubscriptionDao;
-import subscription.dao.SubscriptionDaoImpl;
+import subscription.dao.interfaces.SubscriptionDao;
+import subscription.dao.implementation.SubscriptionDaoImpl;
 import subscription.model.Edition;
 import subscription.model.Reader;
 

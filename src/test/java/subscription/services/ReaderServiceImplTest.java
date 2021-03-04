@@ -76,7 +76,7 @@ public class ReaderServiceImplTest {
         String nameExpected = readerExpected.getName();
         String patronymicExpected = readerExpected.getPatronymic();
 
-        Assert.assertEquals(surnameExpected,surnameActual);
+        Assert.assertEquals(surnameExpected, surnameActual);
         Assert.assertEquals(nameExpected, nameActual);
         Assert.assertEquals(patronymicExpected, patronymicActual);
     }
@@ -107,10 +107,10 @@ public class ReaderServiceImplTest {
         reader2.setName("Елена");
         reader2.setPatronymic("Александровна");
 
-       List<Reader> actual = new ArrayList<>();
-       actual.add(reader);
-       actual.add(reader1);
-       actual.add(reader2);
+        List<Reader> actual = new ArrayList<>();
+        actual.add(reader);
+        actual.add(reader1);
+        actual.add(reader2);
 
         List<Reader> expected = readerService.getListOfReaders();
 

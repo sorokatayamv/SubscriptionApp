@@ -1,5 +1,6 @@
-package subscription.dao;
+package subscription.dao.implementation;
 
+import subscription.dao.interfaces.EditionDao;
 import subscription.model.Edition;
 
 import java.sql.*;

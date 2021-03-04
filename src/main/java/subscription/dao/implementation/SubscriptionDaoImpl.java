@@ -1,5 +1,6 @@
-package subscription.dao;
+package subscription.dao.implementation;
 
+import subscription.dao.interfaces.SubscriptionDao;
 import subscription.model.Edition;
 import subscription.model.Reader;
 

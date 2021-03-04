@@ -1,4 +1,4 @@
-package subscription.dao;
+package subscription.dao.interfaces;
 
 public interface CrudDao<T, K> {
     public T save(T obj); // CREATE
