@@ -12,7 +12,7 @@ public class ReaderDaoImpl implements ReaderDao {
         PreparedStatement ps = null;
         try (Connection conn =
                      DriverManager.getConnection("jdbc:postgresql://localhost/periodicals?user=postgres&password=1")) {
-            String sql = "INSERT INTO readers (id_edition, surname, name, patronymic) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO readers (id_user, surname, name, patronymic) VALUES (?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, reader.getId());
             ps.setString(2, reader.getSurname());
@@ -164,6 +164,7 @@ public class ReaderDaoImpl implements ReaderDao {
             for (Reader reader : result) {
                 System.out.println(reader.getSurname() + " " + reader.getName() + " " + reader.getPatronymic());
             }
+            return result;
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
